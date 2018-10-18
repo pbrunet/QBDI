@@ -27,10 +27,12 @@ linux_arm: &linux_arm
     apt:
       sources:
       - ubuntu-toolchain-r-test
+      - llvm-toolchain-trusty-5.0
     packages:
       - gcc-arm-linux-gnueabi
       - g++-arm-linux-gnueabi
       - qemu-user
+      - llvm-5
   env:
     ARM_ARCH=armv6
     ARM_C_INCLUDE=/usr/arm-linux-gnueabi/include/
@@ -54,6 +56,7 @@ install_llvm: &install_llvm
     - mkdir build && cd build
     - echo ${CMAKE_ARGS}
     - cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_CROSSCOMPILING=True -DCMAKE_C_FLAGS="-march=${ARM_ARCH} -I${ARM_C_INCLUDE}" -DCMAKE_CXX_FLAGS="-march=${ARM_ARCH} -I${ARM_C_INCLUDE} -I${ARM_CXX_INCLUDE}" -DSTRIP_PATH="${STRIP}" -DPLATFORM=${QBDI_PLATFORM} -DARM_ARCH=${ARM_ARCH} -DAS_BINARY=${AS}
+    - sh ../cmake/config-${QBDI_PLATFORM}.sh
     - cmake .. ${CMAKE_ARGS}
     - eval "[[ -d ../deps/llvm/${QBDI_PLATFORM}/lib && -d ../deps/llvm/${QBDI_PLATFORM}/include ]] || make -j2 llvm"
   before_cache:
