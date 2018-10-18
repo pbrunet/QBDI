@@ -3,10 +3,10 @@ language: cpp
 addons:
   apt:
     sources:
-    - ubuntu-toolchain-r-test
-  packages:
-    - g++-7
-    - ccache
+      - ubuntu-toolchain-r-test
+    packages:
+      - g++-7
+      - ccache
   homebrew:
     packages:
       - ccache
@@ -26,12 +26,13 @@ linux_arm: &linux_arm
   addons:
     apt:
       sources:
-      - ubuntu-toolchain-r-test
-      - llvm-toolchain-trusty-5.0
+        - ubuntu-toolchain-r-test
+        - llvm-toolchain-trusty-5.0
       packages:
         - gcc-arm-linux-gnueabi
         - g++-arm-linux-gnueabi
         - qemu-user
+        - ninja
   env:
     ARM_ARCH=armv6
     ARM_C_INCLUDE=/usr/arm-linux-gnueabi/include/
