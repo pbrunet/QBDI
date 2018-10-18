@@ -50,6 +50,7 @@ install_llvm: &install_llvm
   script:
     - export CC=gcc-7
     - export CXX=g++-7
+    - ls /usr/bin
     - sudo update-alternatives --install /usr/bin/gcc-arm-linux-gnueabi gcc-arm-linux-gnueabi /usr/bin/gcc-4.8-arm-linux-gnueabi 50
     - mkdir build && cd build
     - echo ${CMAKE_ARGS}
