@@ -46,9 +46,11 @@ osx_target: &osx_target
     - CMAKE_ARGS="-DCMAKE_BUILD_TYPE=Release -DCMAKE_CROSSCOMPILING=FALSE -DPLATFORM=${QBDI_PLATFORM} -DFORCE_DISABLE_AVX=TRUE"
 
 install_llvm: &install_llvm
+  sudo: required
   script:
     - export CC=gcc-7
     - export CXX=g++-7
+    - sudo update-alternatives --install /usr/bin/gcc-arm-linux-gnueabi gcc-arm-linux-gnueabi /usr/bin/gcc-4.8-arm-linux-gnueabi 50
     - mkdir build && cd build
     - echo ${CMAKE_ARGS}
     - sh ../cmake/config-${QBDI_PLATFORM}.sh
