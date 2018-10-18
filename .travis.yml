@@ -53,6 +53,7 @@ install_llvm: &install_llvm
   script:
     - mkdir build && cd build
     - echo ${CMAKE_ARGS}
+    - cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_CROSSCOMPILING=True -DCMAKE_C_FLAGS="-march=${ARM_ARCH} -I${ARM_C_INCLUDE}" -DCMAKE_CXX_FLAGS="-march=${ARM_ARCH} -I${ARM_C_INCLUDE} -I${ARM_CXX_INCLUDE}" -DSTRIP_PATH="${STRIP}" -DPLATFORM=${QBDI_PLATFORM} -DARM_ARCH=${ARM_ARCH} -DAS_BINARY=${AS}
     - cmake .. ${CMAKE_ARGS}
     - eval "[[ -d ../deps/llvm/${QBDI_PLATFORM}/lib && -d ../deps/llvm/${QBDI_PLATFORM}/include ]] || make -j2 llvm"
   before_cache:
