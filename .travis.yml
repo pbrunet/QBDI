@@ -29,7 +29,7 @@ linux_arm: &linux_arm
         - ubuntu-toolchain-r-test
       packages:
         - gcc-4.8-arm-linux-gnueabi
-          #        - g++-4.8-arm-linux-gnueabi
+        - g++-4.8-arm-linux-gnueabihf
         - qemu-user
         - ninja-build
         - gcc-7
