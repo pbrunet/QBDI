@@ -27,6 +27,7 @@ linux_arm: &linux_arm
     apt:
       sources:
         - ubuntu-toolchain-r-test
+        - team-gcc-arm-embedded
       packages:
         - gcc-6-arm-linux-gnueabi
         - g++-6-arm-linux-gnueabi
