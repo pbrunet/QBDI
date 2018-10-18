@@ -22,7 +22,7 @@ linux_target: &linux_target
 linux_arm: &linux_arm
   os: linux
   dist: trusty
-  compiler: llvm
+  compiler: clang
   addons:
     apt:
       sources:
