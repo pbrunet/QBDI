@@ -56,8 +56,6 @@ install_llvm: &install_llvm
     - echo ${CMAKE_ARGS}
     - ls /usr/bin
     - sh ../cmake/config-${QBDI_PLATFORM}.sh
-    - cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_CROSSCOMPILING=True -DCMAKE_C_FLAGS="-march=${ARM_ARCH} -I${ARM_C_INCLUDE}" -DCMAKE_CXX_FLAGS="-march=${ARM_ARCH} -I${ARM_C_INCLUDE} -I${ARM_CXX_INCLUDE}" -DSTRIP_PATH="${STRIP}" -DPLATFORM=${QBDI_PLATFORM} -DARM_ARCH=${ARM_ARCH} -DAS_BINARY=${AS}
-    - cmake .. ${CMAKE_ARGS}
     - eval "[[ -d ../deps/llvm/${QBDI_PLATFORM}/lib && -d ../deps/llvm/${QBDI_PLATFORM}/include ]] || make -j2 llvm"
   before_cache:
     # Reduce cache size
@@ -66,7 +64,7 @@ install_llvm: &install_llvm
 install_gtest: &install_gtest
   script:
     - mkdir build && cd build
-    - cmake .. ${CMAKE_ARGS}
+    - sh ../cmake/config-${QBDI_PLATFORM}.sh
     - eval "[[ -d ../deps/gtest/${QBDI_PLATFORM}/lib && -d ../deps/gtest/${QBDI_PLATFORM}/include ]] || make -j2 gtest"
   before_cache:
     # Reduce cache size
@@ -75,7 +73,7 @@ install_gtest: &install_gtest
 compile_and_test: &compile_and_test
   script:
     - mkdir build && cd build
-    - cmake .. ${CMAKE_ARGS}
+    - sh ../cmake/config-${QBDI_PLATFORM}.sh
     - make -j2
     - qemu-arm -L /usr/arm-linux-gnueabi/ ./test/QBDITest
 
