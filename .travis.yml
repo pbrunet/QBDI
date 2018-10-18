@@ -51,7 +51,7 @@ install_llvm: &install_llvm
     - export CC=gcc-7
     - export CXX=g++-7
     - ls /usr/bin
-    - sudo update-alternatives --install /usr/bin/gcc-arm-linux-gnueabi gcc-arm-linux-gnueabi /usr/bin/gcc-4.8-arm-linux-gnueabi 50
+    - sudo update-alternatives --install /usr/bin/arm-linux-gnueabi-gcc arm-linux-gnueabihf-gcc /usr/bin/arm-linux-gnueabihf-gcc-4.8 50
     - mkdir build && cd build
     - echo ${CMAKE_ARGS}
     - sh ../cmake/config-${QBDI_PLATFORM}.sh
