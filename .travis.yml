@@ -27,7 +27,6 @@ linux_arm: &linux_arm
     apt:
       sources:
         - ubuntu-toolchain-r-test
-        - llvm-toolchain-trusty-5.0
       packages:
         - gcc-arm-linux-gnueabi
         - g++-arm-linux-gnueabi
@@ -48,9 +47,10 @@ osx_target: &osx_target
 
 install_llvm: &install_llvm
   script:
+    - export CC=gcc-7
+    - export CXX=g++-7
     - mkdir build && cd build
     - echo ${CMAKE_ARGS}
-    - ls /usr/bin
     - sh ../cmake/config-${QBDI_PLATFORM}.sh
     - eval "[[ -d ../deps/llvm/${QBDI_PLATFORM}/lib && -d ../deps/llvm/${QBDI_PLATFORM}/include ]] || make -j2 llvm"
   before_cache:
