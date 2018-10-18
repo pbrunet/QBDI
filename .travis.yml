@@ -32,7 +32,7 @@ linux_arm: &linux_arm
         - gcc-arm-linux-gnueabi
         - g++-arm-linux-gnueabi
         - qemu-user
-        - ninja
+        - ninja-build
   env:
     ARM_ARCH=armv6
     ARM_C_INCLUDE=/usr/arm-linux-gnueabi/include/
