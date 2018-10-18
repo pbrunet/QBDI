@@ -22,7 +22,7 @@ linux_target: &linux_target
 linux_arm: &linux_arm
   os: linux
   dist: trusty
-  compiler: gcc
+  compiler: llvm
   addons:
     apt:
       sources:
@@ -35,16 +35,9 @@ linux_arm: &linux_arm
         - ninja-build
         - gcc-7
         - g++-7
+        - ccache
   env:
-    ARM_ARCH=armv6
-    ARM_C_INCLUDE=/usr/arm-linux-gnueabi/include/
-    ARM_CXX_INCLUDE=/usr/arm-linux-gnueabi/include/c++/6/
-    AS=arm-linux-gnueabi-as
-    CC=arm-linux-gnueabi-gcc
-    CXX=arm-linux-gnueabi-g++
-    STRIP=arm-linux-gnueabi-strip
     QBDI_PLATFORM="linux-ARM"
-    CMAKE_ARGS="-DCMAKE_BUILD_TYPE=Release -DCMAKE_CROSSCOMPILING=True -DCMAKE_C_FLAGS=\"-march=${ARM_ARCH} -I${ARM_C_INCLUDE}\" -DCMAKE_CXX_FLAGS=\"-march=${ARM_ARCH} -I${ARM_C_INCLUDE} -I${ARM_CXX_INCLUDE}\" -DSTRIP_PATH=\"${STRIP}\" -DPLATFORM=${QBDI_PLATFORM} -DARM_ARCH=${ARM_ARCH} -DAS_BINARY=${AS}"
 
 osx_target: &osx_target
   os: osx
