@@ -28,8 +28,8 @@ linux_arm: &linux_arm
       sources:
         - ubuntu-toolchain-r-test
       packages:
-        - gcc-arm-linux-gnueabi
-        - g++-arm-linux-gnueabi
+        - gcc-7-arm-linux-gnueabi
+        - g++-7-arm-linux-gnueabi
         - qemu-user
         - ninja-build
         - gcc-7
