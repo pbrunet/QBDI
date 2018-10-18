@@ -29,6 +29,8 @@ linux_arm: &linux_arm
       - ubuntu-toolchain-r-test
       - llvm-toolchain-trusty-5.0
     packages:
+      - g++-7
+      - gcc-7
       - gcc-arm-linux-gnueabi
       - g++-arm-linux-gnueabi
       - qemu-user
