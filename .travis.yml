@@ -28,13 +28,10 @@ linux_arm: &linux_arm
       sources:
       - ubuntu-toolchain-r-test
       - llvm-toolchain-trusty-5.0
-    packages:
-      - g++-7
-      - gcc-7
-      - gcc-arm-linux-gnueabi
-      - g++-arm-linux-gnueabi
-      - qemu-user
-      - llvm-5
+      packages:
+        - gcc-arm-linux-gnueabi
+        - g++-arm-linux-gnueabi
+        - qemu-user
   env:
     ARM_ARCH=armv6
     ARM_C_INCLUDE=/usr/arm-linux-gnueabi/include/
@@ -57,6 +54,7 @@ install_llvm: &install_llvm
   script:
     - mkdir build && cd build
     - echo ${CMAKE_ARGS}
+    - ls /usr/bin
     - sh ../cmake/config-${QBDI_PLATFORM}.sh
     - cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_CROSSCOMPILING=True -DCMAKE_C_FLAGS="-march=${ARM_ARCH} -I${ARM_C_INCLUDE}" -DCMAKE_CXX_FLAGS="-march=${ARM_ARCH} -I${ARM_C_INCLUDE} -I${ARM_CXX_INCLUDE}" -DSTRIP_PATH="${STRIP}" -DPLATFORM=${QBDI_PLATFORM} -DARM_ARCH=${ARM_ARCH} -DAS_BINARY=${AS}
     - cmake .. ${CMAKE_ARGS}
